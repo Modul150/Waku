@@ -1,0 +1,10 @@
+HW-Architektur
+
+Auf der obersten Schicht ist die Grafische Nutzeroberfläche. Ausgegeben wird alles von dem Web-Server.
+Mit HTML und CSS wird diese oberste Schicht geschrieben. 
+
+Auf der logischen Schicht wird PHP verwendet. Damit wird die Verbindung zwischen der Nutzeroberfläche und der Datenbank gemacht.
+Mit PHP wird auch eine Session gestartet und auch beendet.
+
+Auf der unteresten Schicht wird mit SQL kommuniziert. Hier werden Abfragen direkt in die Datenbank geschickt.
+Diese Daten werden über die zweite Schicht mit PHP zur obersten Schicht gesendet wo es dan mit HTML und CSS, für denn Nutzer lesbar ausgeschrieben wird. 
