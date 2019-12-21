@@ -1,7 +1,7 @@
 <?php
 	$host = 'localhost';
-	$username = 'root';
-	$password = '';
+	$username = 'wakoUser';
+	$password = 'wakoUser';
 	$database = 'wako_neu';
 
 	$connection = mysqli_connect($host, $username, $password, $database) or die("Fehler beim Verbinden mit der Datenbank");

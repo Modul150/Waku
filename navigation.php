@@ -69,7 +69,7 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 		}
 	}
 
-	//Datenbankverbindung öffnen
+	//Datenbankverbindung ï¿½ffnen
 	include("dbconnect.inc");
 	
 	echo '<table border="0" cellpadding="0" cellspacing="0">';
@@ -124,14 +124,14 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 				echo '</td>';
 			echo '</tr>';
 
-			$sql = 'select * from Kategorien order by Kategorien_Bezeichnung';
+			$sql = 'select * from Kategorien order by Kategorien_ID';
 			$result = mysqli_query($connection, $sql);
 			while($row = mysqli_fetch_array($result))
 			{
 				echo '<tr>';
 					echo '<td background="./bilder/button_menu.jpg" colspan="3" align="center">';
 						tabulator(1);
-						echo '<a href="index.php?seite=1000&kategorie='.$row['Kategorien_ID'].'">'.$row['Kategorien_Bezeichnung'].'</a>';
+						echo '<a href="index.php?seite=1000&kategorie='.$row['Kategorien_ID'].'">'.utf8_encode($row['Kategorien_Bezeichnung']).'</a>';
 					echo '</td>';
 					echo '<td bgcolor="#FECA5B">&nbsp;&nbsp;&nbsp;</td>';
 				echo '</tr>';
@@ -143,14 +143,6 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 					echo '<td bgcolor="#FECA5B"/>';
 				echo '</tr>';
 			}
-
-			echo '<tr>';
-				echo '<td background="./bilder/button_menu.jpg" colspan="3" align="center">';
-					tabulator(1);
-					echo '<a href="index.php?seite=1000&kategorie=0">nicht zugewiesen</a>';
-				echo '</td>';
-				echo '<td bgcolor="#FECA5B">&nbsp;&nbsp;&nbsp;</td>';
-			echo '</tr>';
 
 			echo '<tr>';
 				echo '<td background="./bilder/button_menu.jpg" colspan="4">';

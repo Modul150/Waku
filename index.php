@@ -16,6 +16,7 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 	<head>
 		<title>M150 - Beispielwebshop</title>
 		<link type="text/css" rel="stylesheet" href="style1.css"/>
+        <meta charset="utf-8">
 		<?php
 			function ausrichten()
 			{
@@ -86,7 +87,7 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 	//Datenbankverbindung schliessen
 	include("dbconnect.inc");
 
-	//Prüfen, ob Benutzer zum ersten Mal auf der Seite ist
+	//Prï¿½fen, ob Benutzer zum ersten Mal auf der Seite ist
 	if(!isset($_SESSION['besucher']))
 	{
 		$sql = 'select * from besucher';
@@ -106,20 +107,20 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 		$sql = 'insert into Besucher(Besucher_ID, Besucher_Zeit) values('.$besucher_id.', "'.$zeit.'")';
 		mysqli_query($connection, $sql) or die("Ein Fehler beim Erstellen eines neuen Benutzers ist aufgetreten:<br>".mysqli_error());
 
-		$sql = 'select * from Warenkoerbe';
-		$result = mysqli_query($connection, $sql);
-		$id_max = 0;
-		while($row = mysqli_fetch_array($result))
-		{
-			if($row['Warenkoerbe_ID'] > $id_max)
-			{
-				$id_max = $row['Warenkoerbe_ID'];
-			}
-		}
-		$warenkoerbe_id = $id_max+1;
-
-		$sql = 'insert into Warenkoerbe(Warenkoerbe_ID, Besucher_ID) values(' . $warenkoerbe_id . ', ' . $besucher_id . ')';
-		mysqli_query($connection, $sql) or die("Ein Fehler beim Erstellen eines neuen Warenkorbes ist aufgetreten:<br>" . mysqli_error());
+//		$sql = 'select * from Warenkoerbe';
+//		$result = mysqli_query($connection, $sql);
+//		$id_max = 0;
+//		while($row = mysqli_fetch_array($result))
+//		{
+//			if($row['Warenkoerbe_ID'] > $id_max)
+//			{
+//				$id_max = $row['Warenkoerbe_ID'];
+//			}
+//		}
+//		$warenkoerbe_id = $id_max+1;
+//
+//		$sql = 'insert into Warenkoerbe(Warenkoerbe_ID, Besucher_ID) values(' . $warenkoerbe_id . ', ' . $besucher_id . ')';
+//		mysqli_query($connection, $sql) or die("Ein Fehler beim Erstellen eines neuen Warenkorbes ist aufgetreten:<br>" . mysqli_error());
 
 		$_SESSION['besucher'] = $besucher_id;
 	}
