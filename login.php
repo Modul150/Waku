@@ -10,7 +10,6 @@ Luigi Cavuoti, 19. April 2009
 
 <?php
 
-
 	echo '<form name="login" method="post" action="index.php?seite=3">';
 	
 	echo '<b>Login</b>';
