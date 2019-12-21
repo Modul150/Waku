@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Erstellungszeit: 21. Dez 2019 um 23:59
+-- Erstellungszeit: 22. Dez 2019 um 00:12
 -- Server-Version: 10.4.6-MariaDB
 -- PHP-Version: 7.3.8
 
@@ -485,7 +485,7 @@ INSERT INTO `besucher` (`Besucher_ID`, `Besucher_Zeit`) VALUES
 (381, '2019-12-21 22:52:46'),
 (382, '2019-12-21 22:52:56'),
 (383, '2019-12-21 22:52:57'),
-(384, '2019-12-21 23:58:27');
+(384, '2019-12-22 00:12:18');
 
 -- --------------------------------------------------------
 
@@ -556,11 +556,11 @@ CREATE TABLE `produkte` (
 --
 
 INSERT INTO `produkte` (`Produkte_ID`, `Produkte_Name`, `Produkte_Bestellnr`, `Produkte_Beschreibung`, `Produkte_Preis`, `Produkte_Geloescht`, `Produkte_Bildpfad`, `Kategorien_ID`) VALUES
-(1, 'Sonnenblumen', NULL, 'Sonnenblumensamen zu sähen im Frühling.\r\nZu erwartende Grösse der Sonnenblumen: ca. 2.10 m\r\n1 Packung (250g)', '12.90', 0, './produkte_bilder/produkt_1_sonnenblume.bmp', 1),
-(2, 'Tulpen-Zwiebeln', NULL, '5 Stk., ca. 300g.\r\nMitte - Ende März anpflanzen.', '19.95', 0, './produkte_bilder/produkt_2_tulpe.bmp', 1),
+(1, 'Sonnenblumen', NULL, 'Sonnenblumensamen zu sähen im Frühling.\r\nZu erwartende Grösse der Sonnenblumen: ca. 2.10 m\r\n1 Packung (250g)', '12.90', 0, './produkte_bilder/produkt_1_sonnenblume.bmp', 3),
+(2, 'Tulpen-Zwiebeln', NULL, '5 Stk., ca. 300g.\r\nMitte - Ende März anpflanzen.', '19.95', 0, './produkte_bilder/produkt_2_tulpe.bmp', 3),
 (3, 'Rosenstrauss', NULL, 'ca. 30 Stk.\r\nFarben: gemischt.\r\n', '85.00', 0, './produkte_bilder/produkt_3_rosenstrauss.bmp', 2),
 (4, 'Margeritenstrauss', NULL, 'Im Tontopf. Für Aussengebrauch geeignet. Ca. 50 Blumen', '45.90', 0, './produkte_bilder/produkt_4_margeritensrtauss.bmp', 2),
-(5, 'Kaktus grün', NULL, 'Kleiner grüner Kaktus.\r\nVorsicht, sticht!', '3.50', 0, './produkte_bilder/produkt_5_kaktus.bmp', 3),
+(5, 'Kaktus grün', NULL, 'Kleiner grüner Kaktus.\r\nVorsicht, sticht!', '3.50', 0, './produkte_bilder/produkt_5_kaktus.bmp', 1),
 (6, 'Aloe vera', NULL, 'Aloe vera, ca. 75 cm gross.\r\nAls Tischdekoration geeignet.', '13.85', 0, '', 4);
 
 --
