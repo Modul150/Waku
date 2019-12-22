@@ -31,7 +31,6 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 				
 					break;
 				case 1200:
-					print ("Aufgabe 3: Hier ausgew�hlte Produkte in den warenkorb legen");
 					include("in_den_warenkorb.php");
 				
 					break;
@@ -72,6 +71,8 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 					include("suche_resultate.php");
 					break;
 			}
-		}
+		} else {
+            include("startseite.php");
+        }
 	?>
 </div>

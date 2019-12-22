@@ -87,6 +87,20 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 	//Datenbankverbindung schliessen
 	include("dbconnect.inc");
 
+	if (isset($_SESSION['produktId'])
+        && isset($_POST['produktMenge'])
+    ) {
+	    $bestellung = array($_SESSION['produktId'] => [
+	            "menge" => $_POST['produktMenge'],
+                "produktPreis" => $_SESSION['produktPreis']
+        ]);
+
+	    $_SESSION['totalPreis'] += $_POST['produktMenge'] * $_SESSION['produktPreis'];
+	    $_SESSION['bestellung'] .= json_encode($bestellung);
+
+	    unset($_SESSION['produktId']);
+    }
+
 	//Pr�fen, ob Benutzer zum ersten Mal auf der Seite ist
 	if(!isset($_SESSION['besucher']))
 	{
