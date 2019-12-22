@@ -58,6 +58,8 @@ if (isset($_GET['Produkt'])) {
 
     echo "</form>";
 
+    echo "<a href='./index.php?seite=1100&Produkt=" . $produktId . "'>Zurück</a>";
+
     echo '<script>
             document.getElementById("produktMenge").onchange = function() {berechnen(' . $row['Produkte_Preis'] . ')};
 
