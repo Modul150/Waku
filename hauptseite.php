@@ -26,7 +26,6 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 					include("angebote.php");
 					break;
 				case 1100:
-					print ("Aufgabe 2: Hier Detailansicht der Angebote anzeigen!");
 					include("angebote_mehr.php");
 				
 					break;
