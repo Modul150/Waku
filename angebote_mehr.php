@@ -32,11 +32,11 @@
     ?>
     <!--Titel-->
     <h1>Angebote -
-        <?php echo $Kategorien_Bezeichnung; ?> -
-        <?php echo $Name; ?>
+        <?php echo utf8_encode($Kategorien_Bezeichnung); ?> -
+        <?php echo utf8_encode($Name); ?>
     </h1>
     <!--Produkte Beschreibung-->
-    <?php echo $Beschreibung; ?>
+    <?php echo utf8_encode($Beschreibung); ?>
     <br>
     <!--Preis des Produkts-->
     <p>
