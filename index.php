@@ -96,9 +96,10 @@ if (!isset($_SESSION['bestellung'])) {
         && isset($_POST['produktMenge'])
     ) {
 	    $kundenId = 1;
+	    $totalpreis = $_SESSION['produktPreis'] * $_POST['produktMenge'];
         // Select für Produkte info
         $stmt = $connection->prepare("Insert into warenkorb (ProduktId, KundeId, Menge, ProduktName, Preis) values (?, ?, ?, ?, ?)");
-        $stmt->bind_param("iiisi", $_SESSION['produktId'],$kundenId, $_POST['produktMenge'], $_SESSION['produktName'], $_SESSION['produktPreis']);
+        $stmt->bind_param("iiiss", $_SESSION['produktId'],$kundenId, $_POST['produktMenge'], $_SESSION['produktName'], $totalpreis);
         $stmt->execute();
 
         unset($_SESSION['produktId']);
