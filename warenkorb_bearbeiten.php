@@ -63,8 +63,7 @@ if (isset($_GET['Produkt'])) {
     echo "</tr>";
     
     echo "<tr>";
-    
-    echo "<td> </td>";
+
     echo "<td><input type='submit' value='Änderungen Übernehmen'></td>";
     
     echo "</tr>";

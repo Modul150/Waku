@@ -88,39 +88,48 @@ error_reporting(E_ERROR);
 //Datenbankverbindung schliessen
 include("dbconnect.inc");
 
-if (!isset($_SESSION['bestellung'])) {
-    $_SESSION['bestellung'] = 0;
+if (isset($_SESSION['produktId'])
+    && isset($_POST['produktMenge'])
+) {
+    $kundenId = 1;
+    $totalpreis = $_SESSION['produktPreis'] * $_POST['produktMenge'];
+
+    $stmt = $connection->prepare("Insert into warenkorb (ProduktId, KundeId, Menge, ProduktName, Preis) values (?, ?, ?, ?, ?)");
+    $stmt->bind_param("iiiss", $_SESSION['produktId'],$kundenId, $_POST['produktMenge'], $_SESSION['produktName'], $totalpreis);
+    $stmt->execute();
+
+    unset($_SESSION['produktId']);
 }
 
-	if (isset($_SESSION['produktId'])
-        && isset($_POST['produktMenge'])
-    ) {
-	    $kundenId = 1;
-	    $totalpreis = $_SESSION['produktPreis'] * $_POST['produktMenge'];
-        // Select für Produkte info
-        $stmt = $connection->prepare("Insert into warenkorb (ProduktId, KundeId, Menge, ProduktName, Preis) values (?, ?, ?, ?, ?)");
-        $stmt->bind_param("iiiss", $_SESSION['produktId'],$kundenId, $_POST['produktMenge'], $_SESSION['produktName'], $totalpreis);
-        $stmt->execute();
+if (isset($_SESSION['produktId'])
+    && isset($_POST['produktMenge1'])
+) {
+    $kundenId = 1;
+    $totalpreis = $_SESSION['produktPreis'] * $_POST['produktMenge1'];
 
-        unset($_SESSION['produktId']);
+    $stmt = $connection->prepare("Update warenkorb set Menge = ?, Preis = ? where Id = ?");
+    $stmt->bind_param("isi", $_POST['produktMenge1'], $totalpreis, $_SESSION['produktId']);
+    $stmt->execute();
+
+    unset($_SESSION['produktId'], $_POST['produktMenge1']);
+}
+
+//Pr�fen, ob Benutzer zum ersten Mal auf der Seite ist
+if (!isset($_SESSION['besucher'])) {
+    $sql = 'select * from besucher';
+    $result = mysqli_query($connection, $sql);
+    $id_max = 0;
+    while ($row = mysqli_fetch_array($result)) {
+        if ($row['Besucher_ID'] > $id_max) {
+            $id_max = $row['Besucher_ID'];
+        }
     }
 
-	//Pr�fen, ob Benutzer zum ersten Mal auf der Seite ist
-	if (!isset($_SESSION['besucher'])) {
-        $sql = 'select * from besucher';
-        $result = mysqli_query($connection, $sql);
-        $id_max = 0;
-        while ($row = mysqli_fetch_array($result)) {
-            if ($row['Besucher_ID'] > $id_max) {
-                $id_max = $row['Besucher_ID'];
-            }
-        }
+    $besucher_id = $id_max + 1;
+    $zeit = date("Y-m-d H:i:s");
 
-        $besucher_id = $id_max + 1;
-        $zeit = date("Y-m-d H:i:s");
-
-        $sql = 'insert into Besucher(Besucher_ID, Besucher_Zeit) values(' . $besucher_id . ', "' . $zeit . '")';
-        mysqli_query($connection, $sql) or die("Ein Fehler beim Erstellen eines neuen Benutzers ist aufgetreten:<br>" . mysqli_error());
+    $sql = 'insert into Besucher(Besucher_ID, Besucher_Zeit) values(' . $besucher_id . ', "' . $zeit . '")';
+    mysqli_query($connection, $sql) or die("Ein Fehler beim Erstellen eines neuen Benutzers ist aufgetreten:<br>" . mysqli_error());
 
 //		$sql = 'select * from Warenkoerbe';
 //		$result = mysqli_query($connection, $sql);
@@ -137,19 +146,19 @@ if (!isset($_SESSION['bestellung'])) {
 //		$sql = 'insert into Warenkoerbe(Warenkoerbe_ID, Besucher_ID) values(' . $warenkoerbe_id . ', ' . $besucher_id . ')';
 //		mysqli_query($connection, $sql) or die("Ein Fehler beim Erstellen eines neuen Warenkorbes ist aufgetreten:<br>" . mysqli_error());
 
-        $_SESSION['besucher'] = $besucher_id;
-    } else {
-        $zeit = date("Y-m-d H:i:s");
-        $sql = 'update Besucher set Besucher_Zeit = "' . $zeit . '" where Besucher_ID like ' . $_SESSION['besucher'];
-        mysqli_query($connection, $sql) or die("Ein Fehler beim Aktualisieren der Besucher-Zeit ist aufgetreten:<br>" . mysqli_error());
-    }
+    $_SESSION['besucher'] = $besucher_id;
+} else {
+    $zeit = date("Y-m-d H:i:s");
+    $sql = 'update Besucher set Besucher_Zeit = "' . $zeit . '" where Besucher_ID like ' . $_SESSION['besucher'];
+    mysqli_query($connection, $sql) or die("Ein Fehler beim Aktualisieren der Besucher-Zeit ist aufgetreten:<br>" . mysqli_error());
+}
 
-	//Logout
-	if ($_GET[logout] == 1) {
-        $_SESSION['status'] = 0;
-        $_SESSION['benutzer'] = 0;
-    }
+//Logout
+if ($_GET[logout] == 1) {
+    $_SESSION['status'] = 0;
+    $_SESSION['benutzer'] = 0;
+}
 
-	//Datenbankverbindung schliessen
-	mysqli_close($connection);
+//Datenbankverbindung schliessen
+mysqli_close($connection);
 ?>
