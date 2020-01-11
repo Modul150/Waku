@@ -23,6 +23,9 @@ include("dbconnect.inc");
 
     // Tabelle für die Ausgabe wird erstellt
     echo "<table cellspacing='8'>";
+    echo "<th>Produkt:</th>";
+    echo "<th>Menge:</th>";
+    echo "<th>Preis Total:</th>";
 
     // Die Daten werden in einer Tabelle ausgegeben
     while($rowProdukte = $result->fetch_assoc()) {
@@ -32,7 +35,12 @@ include("dbconnect.inc");
                          background-color: lightsteelblue; 
                          text-align: left; 
                          padding: 5px;'>" .utf8_encode($rowProdukte["ProduktName"]); "</td>";
-        echo "<td style='width: 80px; 
+        echo "<td style='width: 100px; 
+                         height: 45px; 
+                         background-color: lightsteelblue; 
+                         text-align: left; 
+                         padding: 5px;'>" .utf8_encode($rowProdukte["Menge"]); "</td>";
+        echo "<td style='width: 100px; 
                          height: 45px; 
                          background-color: lightsteelblue; 
                          text-align: center; 
