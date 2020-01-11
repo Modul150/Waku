@@ -23,18 +23,18 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 		if(isset($_SESSION['besucher'])){
 			$besucher = $_SESSION['besucher'];
 
-			$sql = 'select * from Warenkoerbe where Besucher_ID like '.$besucher;
+			$sql = 'select * from warenkorb where KundeId = 1';
 			$result = mysqli_query($connection, $sql);
 			while($row = mysqli_fetch_array($result))
 			{
-				$warenkorb = $row['Warenkoerbe_ID'];
+				$warenkorb = $row['Id'];
 			}
 
 
 			if($warenkorb>0)
 			{
 				$produkte = 0;
-				$sql = 'select * from Bestellungen where Warenkoerbe_ID like '.$warenkorb;
+				$sql = 'select * from warenkorb where KundeId = 1';
 				$result = mysqli_query($connection, $sql);
 				while($row = mysqli_fetch_array($result))
 				{

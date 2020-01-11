@@ -34,7 +34,6 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 				
 					break;
 				case 10:
-					print ("Aufgabe 4: Hier die Warenkorb-�bersicht anzeigen!");
 					include("warenkorb_uebersicht.php");
 					break;
 				case 11:
@@ -49,7 +48,6 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 				
 					break;
 				case 13:
-					print("Aufgabe 7: Hier Bestellung - absenden realisieren!");
 					include("bestellung_absenden.php");
 				
 					break;

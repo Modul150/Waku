@@ -42,14 +42,14 @@ if (isset($_GET['Produkt'])) {
     echo "<tr>";
 
     echo "<td>Menge: </td>";
-    echo "<td><input type='number' id='produktMenge' name='produktMenge' value='1' min='0' max='99' style='width: 4em;' ></td>";
+    echo "<td><input type='number' id='produktMenge' name='produktMenge' min='0' max='99' style='width: 4em;' ></td>";
 
     echo "</tr>";
 
     echo "<tr>";
 
     echo "<td>Preis total: </td>";
-    echo "<td id='totalKosten'>CHF ". $row['Produkte_Preis'] ."</td>";
+    echo "<td id='totalKosten'>CHF 0</td>";
 
     echo "</tr>";
 
