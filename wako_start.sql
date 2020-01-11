@@ -1,3 +1,5 @@
+# noinspection SqlNoDataSourceInspectionForFile
+
 -- phpMyAdmin SQL Dump
 -- version 2.8.1
 -- http://www.phpmyadmin.net

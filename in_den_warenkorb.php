@@ -16,6 +16,7 @@ if (isset($_GET['Produkt'])) {
     $row = $result->fetch_assoc();
 
     $_SESSION['produktId'] = $produktId;
+    $_SESSION['produktName'] = $row['Produkte_Name'];
     $_SESSION['produktPreis'] = $row['Produkte_Preis'];
 
     echo "<form action='index.php' method='post'>";

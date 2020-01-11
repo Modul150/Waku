@@ -566,7 +566,39 @@ INSERT INTO `produkte` (`Produkte_ID`, `Produkte_Name`, `Produkte_Bestellnr`, `P
 --
 -- Indizes der exportierten Tabellen
 --
+CREATE TABLE `warenkorb` (
+  `Id` int(11) NOT NULL,
+  `ProduktId` int(11) NOT NULL,
+  `KundeId` int(11) NOT NULL,
+  `Menge` int(11) NOT NULL,
+  `ProduktName` varchar(30) NOT NULL,
+  `Preis` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `warenkorb`
+--
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `warenkorb`
+--
+ALTER TABLE `warenkorb`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `warenkorb`
+--
+ALTER TABLE `warenkorb`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
 --
 -- Indizes für die Tabelle `admins`
 --
