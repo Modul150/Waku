@@ -28,7 +28,7 @@ if (isset($_GET['Produkt'])) {
 
     $_SESSION['produktPreis'] = $row['Produkte_Preis'];
 
-    echo "<form action='index.php' method='post'>";
+    echo "<form action='index.php?seite=10' method='post'>";
 
     echo "<h4>Produkt in den Warenkorb legen</h4>";
 
@@ -61,10 +61,15 @@ if (isset($_GET['Produkt'])) {
     echo "<td id='totalKosten'>CHF ". $row['Produkte_Preis'] * $menge ."</td>";
 
     echo "</tr>";
-
+    
+    echo "<tr>";
+    
+    echo "<td> </td>";
+    echo "<td><input type='submit' value='Änderungen Übernehmen'></td>";
+    
+    echo "</tr>";
+    
     echo "</table>";
-
-    echo "<input type='submit' value='in den Warenkorb'>";
 
     echo "</form>";
 
