@@ -15,8 +15,18 @@ if (isset($_GET['Produkt'])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $row = $result->fetch_assoc();
+    $produktName = $row['ProduktName'];
+    $menge = $row['Menge'];
+    $produktId = $row['ProduktId'];
 
-    $_SESSION['produktPreis'] = $row['Preis'];
+
+    $stmt = $connection->prepare("SELECT Produkte_Preis FROM produkte WHERE Produkte_ID = ?");
+    $stmt->bind_param("i", $row['ProduktId']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+
+    $_SESSION['produktPreis'] = $row['Produkte_Preis'];
 
     echo "<form action='index.php' method='post'>";
 
@@ -27,28 +37,28 @@ if (isset($_GET['Produkt'])) {
     echo "<tr>";
 
     echo "<td>Produktname: </td>";
-    echo "<td>" . utf8_encode($row['ProduktName']) . "</td>";
+    echo "<td>" . utf8_encode($produktName) . "</td>";
 
     echo "</tr>";
 
     echo "<tr>";
 
     echo "<td>Preis pro Stück: </td>";
-    echo "<td>CHF " . $row['Preis'] . "</td>";
+    echo "<td>CHF " . $row['Produkte_Preis'] . "</td>";
 
     echo "</tr>";
 
     echo "<tr>";
 
     echo "<td>Menge: </td>";
-    echo "<td><input type='number' id='produktMenge1' name='produktMenge1' value='" . $row['Menge'] . "' min='0' max='99' style='width: 4em;' ></td>";
+    echo "<td><input type='number' id='produktMenge1' name='produktMenge1' value='" . $menge . "' min='1' max='99' style='width: 4em;' ></td>";
 
     echo "</tr>";
 
     echo "<tr>";
 
     echo "<td>Preis total: </td>";
-    echo "<td id='totalKosten'>CHF 0</td>";
+    echo "<td id='totalKosten'>CHF ". $row['Produkte_Preis'] * $menge ."</td>";
 
     echo "</tr>";
 
@@ -58,10 +68,10 @@ if (isset($_GET['Produkt'])) {
 
     echo "</form>";
 
-    echo "<a href='./index.php?seite=1100&Produkt=" . $row['ProduktId'] . "'>Zurück</a>";
+    echo "<a href='./index.php?seite=1100&Produkt=" . $produktId . "'>Zurück</a>";
 
     echo '<script>
-            document.getElementById("produktMenge1").onchange = function() {berechnen(' . $row['Preis'] . ')};
+            document.getElementById("produktMenge1").onchange = function() {berechnen(' . $row['Produkte_Preis'] . ')};
 
             function berechnen(price) {
                 var menge = document.getElementById("produktMenge1");
