@@ -28,7 +28,20 @@
     <br>
     <!--Statement Ausführung bei "Ja"-->
     <!--Abfrage an Nutzer mit einer Verlinkung zurück-->
+     <?php
+    $stmt->close();
+    $connection->close();
+    ?>
+    
+    <!--Neue DB Verbindung für Nutzer mit lösch Berechtigung-->
     <?php
+        $host = 'localhost';
+        $username = 'root';
+        $password = '';
+        $database = 'wako_neu';
+        $connection = mysqli_connect($host, $username, $password, $database) or die("Fehler beim Verbinden mit der Datenbank");
+        $db = mysqli_select_db($connection, $database) or die("Fehler biem Ausw&auml;hlen der Datenbank");
+
    echo '<a href="./index.php?seite=12&WarenkorbId='.$Id.'&action=delete&Id=$Id">Ja</a>';
         if(($_GET['action'] == 'delete') && isset($_GET['Id'])) { 
             $stmt = $connection->prepare("DELETE FROM warenkorb WHERE Id = ?");
