@@ -99,6 +99,8 @@ if (isset($_SESSION['produktId'])
     $stmt->execute();
 
     unset($_SESSION['produktId']);
+
+    echo '<script>window.location.reload()</script>';
 }
 
 if (isset($_SESSION['produktId'])
@@ -112,6 +114,8 @@ if (isset($_SESSION['produktId'])
     $stmt->execute();
 
     unset($_SESSION['produktId'], $_POST['produktMenge1']);
+
+    echo '<script>window.location.reload()</script>';
 }
 
 //Pr�fen, ob Benutzer zum ersten Mal auf der Seite ist
