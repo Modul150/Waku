@@ -88,21 +88,30 @@ error_reporting(E_ERROR);
 //Datenbankverbindung schliessen
 include("dbconnect.inc");
 
-if (!isset($_SESSION['bestellung'])) {
-    $_SESSION['bestellung'] = 0;
-}
-
 	if (isset($_SESSION['produktId'])
         && isset($_POST['produktMenge'])
     ) {
 	    $kundenId = 1;
 	    $totalpreis = $_SESSION['produktPreis'] * $_POST['produktMenge'];
-        // Select für Produkte info
+
         $stmt = $connection->prepare("Insert into warenkorb (ProduktId, KundeId, Menge, ProduktName, Preis) values (?, ?, ?, ?, ?)");
         $stmt->bind_param("iiiss", $_SESSION['produktId'],$kundenId, $_POST['produktMenge'], $_SESSION['produktName'], $totalpreis);
         $stmt->execute();
 
         unset($_SESSION['produktId']);
+    }
+
+    if (isset($_SESSION['produktId'])
+        && isset($_POST['produktMenge1'])
+    ) {
+        $kundenId = 1;
+        $totalpreis = $_SESSION['produktPreis'] * $_POST['produktMenge1'];
+
+        $stmt = $connection->prepare("Update warenkorb set Menge = ?, Preis = ? where Id = ?");
+        $stmt->bind_param("isi", $_POST['produktMenge1'], $totalpreis, $_SESSION['produktId']);
+        $stmt->execute();
+
+        unset($_SESSION['produktId'], $_POST['produktMenge1']);
     }
 
 	//Pr�fen, ob Benutzer zum ersten Mal auf der Seite ist
