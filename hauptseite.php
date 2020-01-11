@@ -37,13 +37,10 @@ v. 1.2 Andrea Casauro, 1. Juni 2018
 					include("warenkorb_uebersicht.php");
 					break;
 				case 11:
-					print("Aufgabe 5: Hier die Warenkorb Bearbeitung realisieren!");
 					include("warenkorb_bearbeiten.php");
 				
 					break;
 				case 12:
-					print("Aufgabe 6: Hier Produkte im Warenkorb loeschen realisieren");
-				
 					include("warenkorb_loeschen.php");
 				
 					break;
